@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+:root {
+    --bgcolor: #3f366c;
+    --maincolor: #e9e9e9;
+    --hovercolor: #fff;
+    --outoffocus: #cccccc;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bgcolor);
+    font-family: 'Roboto', sans-serif;
+    color: var(--bgcolor);
+}
+
+.content {
+    margin-top: 100px;
+    /* animation: alarme 1s ease 0s infinite; */
+}
+
+.abas {
+    width: 700px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.abas h2 {
+    display: inline-block;
+    padding: 10px 0;
+    width: 30%;
+    text-align: center;
+    border-radius: 25px 25px 0 0;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 4px;
+    background-color: var(--outoffocus);
+    box-sizing: border-box;
+    color: #434343;
+    user-select: none;
+    cursor: pointer;
+    font-weight: bolder;
+    transition: 0.3s;
+}
+
+.abas h2.selected {
+    letter-spacing: 5px;
+    border-bottom: 0;
+    background-color: var(--maincolor);
+    color: var(--bgcolor);
+}
+
+.sessao {
+    display: none;
+}
+
+.sessao.selected {
+    display: block;
+}
+
+.sessao h1 {
+    font-size: 100px;
+    padding-top: 100px;
+}
+
+.sessao h2 {
+    margin-top: 30px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.temporizador h1 {
+    padding-top: 70px;
+    margin-bottom: 10px;
+}
+
+.temporizador .buttonlist i {
+    display: none;
+}
+
+.temporizador .buttonlist .play {
+    display: inline-block;
+}
+
+.sessao .seletores {
+    /* border: 1px solid red; */
+    width: 400px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sessao .seletores div {
+    /* border: 1px solid green; */
+    width: 100px;
+}
+
+.sessao .seletores label {
+    display: block;
+    font-size: 10px;
+    margin-bottom: 5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.sessao .seletores input {
+    width: inherit;
+    height: 35px;
+    text-align: center;
+    font-size: 17px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--bgcolor);
+    color: white;
+}
+
+.sessao .seletores input::placeholder {
+    color: white;
+}
+
+.sessao .buttonlist {
+    width: 300px;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 60px;
+    text-align: center;
+    
+}
+
+.sessao .buttonlist i {
+    transition: 0.2s;
+    cursor: pointer;
+    width: 60px;
+}
+
+.container {
+    background-color: var(--maincolor);
+    border-radius: 25px;
+    width: 700px;
+    height: 400px;
+    margin: auto;
+    margin-top: -1px;
+    text-align: center;
+}
+
+@keyframes alarme {
+    0% {transform: rotate(0)}
+    20% {transform: rotate(1deg)}
+    30% {transform: rotate(-1deg)}
+    40% {transform: rotate(1deg)}
+    50% {transform: rotate(-1deg)}
+    60% {transform: rotate(1deg)}
+    70% {transform: rotate(-1deg)}
+    80% {transform: rotate(1deg)}
+    100% {transform: rotate(0)}
+}

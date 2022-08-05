@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebRelógio</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/fc061b14f6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="content">
+        <section class="abas">
+            <h2>Temporizador</h2>
+            <h2 class="selected">Relógio</h2>
+            <h2>Cronômetro</h2>
+        </section>
+    
+        <div class="container">
+            <section class="sessao temporizador">
+                <h1>00:00:00</h1>
+                <div class="seletores">
+                    <div class="hora">
+                        <label>Horas</label>
+                        <input type="number" max="59" min="0" placeholder="0">
+                    </div>
+                    <div class="minutos">
+                        <label>Minutos</label>
+                        <input type="number" max="59" min="0" placeholder="0">
+                    </div>
+                    <div class="segundos">
+                        <label>Segundos</label>
+                        <input type="number" max="59" min="0" placeholder="0">
+                    </div>
+                </div>
+                <div class="buttonlist">
+                    <i class="fas fa-stop stop" onclick="stop_temporizador()"></i>
+                    <i class="fas fa-play play" onclick="play_temporizador()"></i>
+                    <i class="fas fa-pause pause" onclick="pause_temporizador()"></i>
+                </div>
+                <audio src="alarm.mp3"></audio>
+            </section>
+
+            <section class="sessao relogio selected">
+                <h1>00:00:00</h1>
+                <h2>Quarta, 2 de Agosto de 2022</h2>
+            </section>
+
+            <section class="sessao cronometro">
+                <h1>00:00:00</h1>
+                <div class="buttonlist">
+                    <i class="fa-solid fa-clock-rotate-left" title="Adicionar volta"></i>
+                    <i class="fas fa-stop stop" title="Parar Cronômetro"></i>
+                    <i class="fas fa-play play" title="Iniciar Cronômetro"></i>
+                    <i class="fas fa-pause pause" title="Pausar Cronômetro"></i>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script src="js/hacktime/HackTimer.js"></script> 
+</body>
+</html>
