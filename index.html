@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WebRelógio</title>
+    <title>Relógio</title>
     <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
     <script src="https://kit.fontawesome.com/fc061b14f6.js" crossorigin="anonymous"></script>
@@ -13,7 +13,7 @@
             <h2 class="selected">Relógio</h2>
             <h2>Cronômetro</h2>
         </section>
-    
+        
         <div class="container">
             <section class="sessao temporizador">
                 <h1>00:00:00</h1>
@@ -38,19 +38,25 @@
                 </div>
                 <audio src="alarm.mp3"></audio>
             </section>
-
+            
             <section class="sessao relogio selected">
                 <h1>00:00:00</h1>
                 <h2>Quarta, 2 de Agosto de 2022</h2>
             </section>
-
-            <section class="sessao cronometro">
-                <h1>00:00:00</h1>
+            
+            <section class="sessao cronometro" id="cronometro">
+                <h1>00:00:00<span>:00</span></h1>
                 <div class="buttonlist">
-                    <i class="fa-solid fa-clock-rotate-left" title="Adicionar volta"></i>
-                    <i class="fas fa-stop stop" title="Parar Cronômetro"></i>
-                    <i class="fas fa-play play" title="Iniciar Cronômetro"></i>
-                    <i class="fas fa-pause pause" title="Pausar Cronômetro"></i>
+                    <i class="fa-solid fa-clock-rotate-left" title="Volta" onclick="volta_cronometro()"></i>
+                    <i class="fa-solid fa-trash-can stop" title="Redefinir" onclick="stop_cronometro()"></i>
+                    <i class="fa-solid fa-play play" title="Iniciar" onclick="play_cronometro()"></i>
+                    <i class="fa-solid fa-pause pause" title="Pausar" onclick="pause_cronometro()"></i>
+                </div>
+
+                <div class="voltas">
+                    <h2>Voltas</h2>
+                    <ul>
+                    </ul>
                 </div>
             </section>
         </div>

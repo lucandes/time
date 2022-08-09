@@ -14,6 +14,7 @@ for (let i=0; i<abas.length; ++i) {
             // adicionando nova configuração
             abas[i].classList.add('selected');
             sessoes[i].classList.add('selected');
+            document.title = abas[i].textContent;
 
             sessao_aberta = i;
         }
@@ -63,7 +64,7 @@ function play_temporizador(){
     botoes_temporizador[2].style.display = 'inline-block';
     
     tpr_status = 'play';
-    display_temporizador.innerHTML = atualizardisplay(tpr_timer);
+    display_temporizador.innerHTML = atualizardisplay(tpr_timer, 3);
     tpr_interval = setInterval(temporizador, 1000);
 }
 
@@ -80,7 +81,7 @@ function stop_temporizador(){
     tpr_timer = [0,0,0];
     tpr_status = 'stop';
 
-    display_temporizador.innerHTML = atualizardisplay(tpr_timer);
+    display_temporizador.innerHTML = atualizardisplay(tpr_timer, 3);
     botoes_temporizador[1].style.display = 'inline-block';
     botoes_temporizador[0].style.display = 'none';
     botoes_temporizador[2].style.display = 'none';
@@ -95,6 +96,12 @@ function pause_temporizador(){
 }
 
 function alarmar_temporizador() {
+    // retorna o foco para a sessão temporizador
+    if (sessao_aberta != 0){
+        let event = new MouseEvent('click');
+        abas[0].dispatchEvent(event);
+    }
+
     clearInterval(tpr_interval);
     tpr_status = 'alarm';
     conteudo.style.animation = 'alarme 1s ease 0s infinite';
@@ -121,18 +128,102 @@ function temporizador(){
         alarmar = true;
     }
 
-    display_temporizador.innerHTML = atualizardisplay(tpr_timer);
+    display_temporizador.innerHTML = atualizardisplay(tpr_timer, 3);
     if (alarmar) alarmar_temporizador();
 }
 
 // SESSÃO CRONÔMETRO
 const display_cronometro = document.querySelector('.cronometro h1');
 const botoes_cronometro = document.querySelectorAll('.cronometro .buttonlist i');
+const lista_voltas = document.querySelector('.cronometro .voltas ul');
+var crn_interval;
+var crn_timer = [0,0,0,0];
+var crn_voltas_contador = 0;
+var crn_timer_total = [0,0,0,0];
+var crn_status = 'stop'; //stop, pause, play
 
+function play_cronometro (){
+    // exibindo botões VOLTA e PAUSA
+    botoes_cronometro[0].style.display = 'block';
+    botoes_cronometro[3].style.display = 'block';
+
+    // escondendo botões PLAY E STOP
+    botoes_cronometro[1].style.display = 'none';
+    botoes_cronometro[2].style.display = 'none';
+
+    crn_interval = setInterval(() => {
+        cronometro(crn_timer);
+        cronometro(crn_timer_total);
+        display_cronometro.innerHTML = atualizardisplay(crn_timer, 4);
+    }, 10);
+
+    crn_status = 'play';
+}
+
+function pause_cronometro (){
+    // escondendo botões VOLTA e PAUSA
+    botoes_cronometro[0].style.display = 'none';
+    botoes_cronometro[3].style.display = 'none';
+    
+    // exibindo botões PLAY E STOP
+    botoes_cronometro[1].style.display = 'block';
+    botoes_cronometro[2].style.display = 'block';
+
+    clearInterval(crn_interval);
+    crn_status = 'pause';
+}
+
+function stop_cronometro (){
+    // escondendo botão STOP
+    botoes_cronometro[1].style.display = 'none';
+
+    // resetando timer e histórico
+    crn_timer = [0,0,0,0];
+    crn_timer_total = [0,0,0,0];
+    crn_voltas = []
+
+    display_cronometro.innerHTML = atualizardisplay(crn_timer, 4);
+    Array.from(lista_voltas.children).forEach((element) => {
+        lista_voltas.removeChild(element);
+    })
+    crn_voltas_contador = 0;
+    crn_status = 'stop';
+}
+
+function volta_cronometro(){
+    let newli = document.createElement('li');
+    
+    newli.appendChild(document.createTextNode(++crn_voltas_contador+'. '
+    +atualizardisplay(crn_timer,4)+' / '
+    +atualizardisplay(crn_timer_total,4)));
+
+    lista_voltas.appendChild(newli);
+    crn_timer = [0,0,0,0];
+}
+
+function cronometro (timer_array){
+    timer_array[3] += 10;
+
+    if (timer_array[3] == 1000){
+        timer_array[3] = 0;
+        timer_array[2] += 1;
+    }
+
+    if (timer_array[2] == 60){
+        timer_array[2] = 0;
+        timer_array[1] += 1;
+    }
+
+    if (timer_array[1] == 60){
+        timer_array[1] = 0;
+        timer_array[0] += 1;
+    }
+}
 
 // ATUALIZAÇÃO DE DISPLAY
 const zeroPad = (num, places) => String(num).padStart(places, '0')
 
-function atualizardisplay(array){
-    return zeroPad(array[0], 2)+':'+zeroPad(array[1], 2)+':'+zeroPad(array[2], 2);
+function atualizardisplay(array, len){
+    if (len == 3) return zeroPad(array[0], 2)+':'+zeroPad(array[1], 2)+':'+zeroPad(array[2], 2);
+    if (len == 4) return zeroPad(array[0], 2)+':'+zeroPad(array[1], 2)+':'+zeroPad(array[2], 2)+'.'+zeroPad((array[3] / 10), 2);
 }

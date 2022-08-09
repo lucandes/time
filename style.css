@@ -48,10 +48,15 @@ body {
     user-select: none;
     cursor: pointer;
     font-weight: bolder;
+    transform: translateY(0);
     transition: 0.3s;
+    height: 35px;
+    position: relative;
+    z-index: 1;
 }
 
 .abas h2.selected {
+    transform: translateY(5px);
     letter-spacing: 5px;
     border-bottom: 0;
     background-color: var(--maincolor);
@@ -63,12 +68,17 @@ body {
 }
 
 .sessao.selected {
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 .sessao h1 {
-    font-size: 100px;
+    font-size: 600%;
     padding-top: 100px;
+}
+
+.sessao h1 span {
+    font-size: 70px;
 }
 
 .sessao h2 {
@@ -154,7 +164,79 @@ body {
     margin: auto;
     margin-top: -1px;
     text-align: center;
+    z-index: 99;
+    position: relative;
 }
+
+.cronometro {
+    max-height: 100%;
+}
+
+.cronometro h1 {
+    padding-top: 20px;
+    font-size: 70px;
+    margin-top: 40px;
+}
+
+.cronometro .buttonlist {
+    flex-grow: 1;
+}
+
+.cronometro i {
+    font-size: 30px;
+}
+
+.cronometro .voltas{
+    /* display: none; */
+    flex-grow: 1;
+    transition: 1s;
+    background-color: #3f366c;
+    margin: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    height: 200px;
+    color: white;
+    overflow-y: scroll;
+}
+
+.cronometro .voltas::-webkit-scrollbar {
+    width: 20px;
+    padding: 5px;
+    scroll-behavior: smooth;
+}
+
+.cronometro .voltas::-webkit-scrollbar-thumb {
+    background-color: #201940;
+    border-radius: 50px;
+}
+
+.cronometro .voltas h2 {
+    font-size: 20px;
+    /* letter-spacing: 15px; */
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.cronometro .voltas ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.cronometro .voltas li {
+    margin: 5px 0;
+}
+
+.cronometro .voltas span {
+    font-size: 10px;
+}
+
+.cronometro .buttonlist i {
+    display: none;
+}
+
+.cronometro .buttonlist .play {
+    display: block;
+} 
 
 @keyframes alarme {
     0% {transform: rotate(0)}
