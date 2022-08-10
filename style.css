@@ -7,6 +7,20 @@
     --outoffocus: #cccccc;
 }
 
+/*
+    #52796f
+    #b392ac
+    #781c2c
+    #5c5dc3
+    #5cc3b2
+    #8bc35c
+    #b1ae8b
+    #404038
+    #040032
+    #202020
+*/
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -20,6 +34,8 @@ body {
 }
 
 .content {
+    margin: auto;
+    width: fit-content;
     margin-top: 100px;
     /* animation: alarme 1s ease 0s infinite; */
 }
@@ -44,7 +60,7 @@ body {
     letter-spacing: 4px;
     background-color: var(--outoffocus);
     box-sizing: border-box;
-    color: #434343;
+    color: var(--bgcolor);
     user-select: none;
     cursor: pointer;
     font-weight: bolder;
@@ -89,8 +105,64 @@ body {
 }
 
 .temporizador h1 {
-    padding-top: 70px;
+    padding-top: 50px;
     margin-bottom: 10px;
+}
+
+.temporizador .volumecontainer {
+    padding-top: 25px;
+    width: fit-content;
+    margin: auto;
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.temporizador .volumecontainer .slidercontainer {
+    width: fit-content;
+    margin: 0 20px;
+    position: relative;
+}
+
+.temporizador .volumecontainer #volumeslider {
+    width: 300px;
+    height: 5px;
+    border-radius: 10px;
+    appearance: none;
+    background-color: var(--bgcolor);
+}
+
+.temporizador .volumecontainer #volumeslider::-webkit-slider-thumb {
+    appearance: none;
+    border-radius: 50%;
+    width: 15px; height: 15px;
+    background-color: var(--bgcolor);
+}
+
+.temporizador .volumecontainer #volumedisplay {
+    transition: transform 0.2s;
+    display: block;
+    width: 34px;
+    height: fit-content;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    font-size: 8px;
+    text-align: center;
+    background-color: var(--bgcolor);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -5.5%;
+    user-select: none;
+    transform: scale(0);
+    overflow: hidden;
+}
+
+.temporizador .volumecontainer i {
+    font-size: 20px;
 }
 
 .temporizador .buttonlist i {
@@ -141,7 +213,7 @@ body {
 .sessao .buttonlist {
     width: 300px;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -173,8 +245,8 @@ body {
 }
 
 .cronometro h1 {
-    padding-top: 20px;
-    font-size: 70px;
+    padding-top: 00px;
+    font-size: 100px;
     margin-top: 40px;
 }
 
@@ -190,7 +262,7 @@ body {
     /* display: none; */
     flex-grow: 1;
     transition: 1s;
-    background-color: #3f366c;
+    background-color: var(--bgcolor);
     margin: 20px;
     margin-top: 30px;
     border-radius: 10px;
@@ -212,7 +284,6 @@ body {
 
 .cronometro .voltas h2 {
     font-size: 20px;
-    /* letter-spacing: 15px; */
     margin-top: 10px;
     font-weight: bold;
 }

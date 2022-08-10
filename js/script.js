@@ -40,6 +40,8 @@ function relogio(){
 const display_temporizador = document.querySelector('.temporizador h1');
 const botoes_temporizador = document.querySelectorAll('.temporizador .buttonlist i');
 const seletores_tpr = document.querySelectorAll('.temporizador input');
+const slider_tpr = document.querySelector('#volumeslider');
+const slider_val = document.querySelector('#volumedisplay');
 const som_alarme = document.querySelector('audio');
 var tpr_timer = [0,0,0]; // hora, minuto, segundo
 var tpr_interval;
@@ -51,10 +53,19 @@ function play_temporizador(){
     
     if (tpr_status == 'stop'){
         tpr_timer = [seletores_tpr[0].value, seletores_tpr[1].value, seletores_tpr[2].value];
+        
+        // definindo limitações 
+        tpr_timer.forEach((value, index) => {
+            if (value > 999 && index == 0) tpr_timer[index] = 999;
+            else if (value > 59) tpr_timer[index] = 59;
+            else if (value < 0) tpr_timer[index] = 0;
+        });
     }
     let timerzerado = tpr_timer[0]+tpr_timer[1]+tpr_timer[2] == 0;
 
     if (timerzerado){
+        display_temporizador.style.animation = 'alarme 1s linear 0s';
+        setTimeout(() => {display_temporizador.style.animation = 'none'}, 1000);
         stop_temporizador();
         return;
     }
@@ -106,10 +117,30 @@ function alarmar_temporizador() {
     tpr_status = 'alarm';
     conteudo.style.animation = 'alarme 1s ease 0s infinite';
     botoes_temporizador[2].style.display = 'none';
-    som_alarme.volume = '0.2';
+    som_alarme.volume = (slider_tpr.value / 100);
     som_alarme.loop = true;
     som_alarme.play();
 }
+
+// FUNÇÕES DO SLIDER DE VOLUME
+slider_tpr.oninput = () => {
+    slider_val.innerHTML = slider_tpr.value+'%';
+    slider_val.style.left = slider_tpr.value+'%'; 
+    som_alarme.volume = (slider_tpr.value / 100);
+}
+
+var mousestillpressed = false;
+
+slider_tpr.addEventListener('mousedown', () => {
+    mousestillpressed = true;
+    setTimeout(() => {if (mousestillpressed) slider_val.style.transform = 'scale(1)';}, 200); // wait
+    
+});
+
+slider_tpr.addEventListener('mouseup', () => {
+    mousestillpressed = false;
+    setTimeout(() => {slider_val.style.transform = 'scale(0)';}, 500); // wait
+});
 
 function temporizador(){
     let alarmar = false;

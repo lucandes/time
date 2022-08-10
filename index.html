@@ -31,10 +31,20 @@
                         <input type="number" max="59" min="0" placeholder="0">
                     </div>
                 </div>
+
+                <div class="volumecontainer">
+                    <i class="fa-solid fa-volume-off" title="Mudo"></i>
+                    <div class="slidercontainer">
+                        <input type="range" id="volumeslider" value="50" max="100" min="0" step="1" on>
+                        <div id="volumedisplay">50%</div>
+                    </div>
+                    <i class="fa-solid fa-volume-high" title="Alto"></i>
+                </div>
+
                 <div class="buttonlist">
-                    <i class="fas fa-stop stop" onclick="stop_temporizador()"></i>
-                    <i class="fas fa-play play" onclick="play_temporizador()"></i>
-                    <i class="fas fa-pause pause" onclick="pause_temporizador()"></i>
+                    <i class="fas fa-stop stop" onclick="stop_temporizador()" title="Parar"></i>
+                    <i class="fas fa-play play" onclick="play_temporizador()" title="Iniciar"></i>
+                    <i class="fas fa-pause pause" onclick="pause_temporizador()" title="Pausar"></i>
                 </div>
                 <audio src="alarm.mp3"></audio>
             </section>
@@ -45,7 +55,7 @@
             </section>
             
             <section class="sessao cronometro" id="cronometro">
-                <h1>00:00:00<span>:00</span></h1>
+                <h1>00:00:00:00</h1>
                 <div class="buttonlist">
                     <i class="fa-solid fa-clock-rotate-left" title="Volta" onclick="volta_cronometro()"></i>
                     <i class="fa-solid fa-trash-can stop" title="Redefinir" onclick="stop_cronometro()"></i>
